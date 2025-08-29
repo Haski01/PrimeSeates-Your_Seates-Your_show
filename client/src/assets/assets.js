@@ -1,4 +1,3 @@
-import logo from "./logo.svg";
 import marvelLogo from "./marvelLogo.svg";
 import googlePlay from "./googlePlay.svg";
 import appStore from "./appStore.svg";
@@ -7,7 +6,6 @@ import profile from "./profile.png";
 import logo2 from "./logo2.png";
 
 export const assets = {
-  logo,
   marvelLogo,
   googlePlay,
   appStore,
@@ -123,6 +121,7 @@ const dummyCastsData = [
   },
 ];
 
+// for user 
 export const dummyShowsData = [
   {
     _id: "324544",
@@ -310,6 +309,7 @@ export const dummyDateTimeData = {
   ],
 };
 
+// for admin deshboard
 export const dummyDashboardData = {
   totalBookings: 14,
   totalRevenue: 1517,
