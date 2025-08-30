@@ -1,20 +1,26 @@
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
 import { dummyDateTimeData, dummyShowsData } from "../assets/assets";
 
 import BlurCircle from "../components/BlurCircle";
 import { Heart, PlayCircleIcon, StarIcon } from "lucide-react";
 import timeFormat from "../lib/timeFormat";
+import DateSelect from "../components/DateSelect";
+import MovieCard from "../components/MovieCard";
+import Loading from "../components/Loading";
 
 const MovieDetails = () => {
+  const navigate = useNavigate();
   const { id } = useParams();
   const [show, setShow] = useState();
 
   // get particular show which matches to the params id
   const getShow = async () => {
     const show = dummyShowsData.find((show) => show._id === id);
-    setShow({ movie: show, dateTime: dummyDateTimeData });
+    if (show) {
+      setShow({ movie: show, dateTime: dummyDateTimeData });
+    }
   };
 
   // only get show data when id params id changes
@@ -65,7 +71,7 @@ const MovieDetails = () => {
 
             {/* BUY TICKET */}
             <a
-              href="#dataSelect"
+              href="#dateSelect"
               className="bg-primary px-10 py-3 text-sm hover:bg-primary-dull transition rounded-md font-medium cursor-pointer active:scale-95"
             >
               Buy Ticket
@@ -85,21 +91,51 @@ const MovieDetails = () => {
       {/* MOVIE ACTOR DETAILS */}
 
       <div className="overflow-x-auto no-scrollbar mt-8 pb-4">
-
         {/* PHOTO AND NAME */}
         <div className="flex items-center gap-4 w-max px-4">
           {show.movie.casts.slice(0, 12).map((cast, index) => (
             <div key={index} className="flex flex-col items-center text-center">
-              <img src={cast.profile_path} alt="movieActor" className="h-20 rounded-full md:h-20 aspect-square object-cover" />
+              <img
+                src={cast.profile_path}
+                alt="movieActor"
+                className="h-20 rounded-full md:h-20 aspect-square object-cover"
+              />
               <p className="font-medium text-xs mt-3">{cast.name}</p>
             </div>
           ))}
         </div>
+      </div>
+      {/* ***************CAST SECTION END********** */}
 
+      {/* DATE SELECT SECTION COMPONENT****************/}
+      <DateSelect dateTime={show.dateTime} id={id} />
+
+      {/* RECOMMENDED MOVEY SECTION******************** */}
+      <p className="text-lg font-medium mt-20 mb-8">You May Also Like</p>
+      {/* MOVIE CARD */}
+      <div className="flex flex-wrap max-sm:justify-center gap-8 justify-center">
+        {dummyShowsData.slice(0, 6).map((movie, index) => (
+          <MovieCard key={index} movie={movie} />
+        ))}
+      </div>
+
+      {/* SHOW MORE BUTTON */}
+      <div className="flex justify-center mt-20">
+        <button
+          onClick={() => {
+            navigate("/movies");
+            scrollTo(0, 0);
+          }}
+          className="bg-primary px-10 py-3 text-sm hover:bg-primary-dull transition rounded-md font-medium cursor-pointer"
+        >
+          Show More
+        </button>
       </div>
     </div>
   ) : (
-    <div>Loading....</div>
+    <div>
+      <Loading />
+    </div>
   );
 };
 

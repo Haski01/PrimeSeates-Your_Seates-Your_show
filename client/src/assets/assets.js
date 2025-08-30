@@ -121,7 +121,7 @@ const dummyCastsData = [
   },
 ];
 
-// for user 
+// for user
 export const dummyShowsData = [
   {
     _id: "324544",
