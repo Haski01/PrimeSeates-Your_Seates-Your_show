@@ -13,7 +13,7 @@ const DateSelect = ({ dateTime, id }) => {
       return toast.error("Please select a date");
     }
     navigate(`/movies/${id}/${selected}`);
-    scroll(0, 0);
+    scrollTo(0, 0);
   };
 
   return (
@@ -22,6 +22,7 @@ const DateSelect = ({ dateTime, id }) => {
         <BlurCircle top="-100px" left="-100px" />
         <BlurCircle top="100px" right="0px" />
 
+        {/* LEFT SIDE */}
         <div>
           <p className="text-lg font-semibold">Choose Date</p>
           <div className="flex items-center gap-6 text-sm mt-5">
@@ -50,6 +51,7 @@ const DateSelect = ({ dateTime, id }) => {
           </div>
         </div>
 
+        {/* RIGHT SIDE BUTTON */}
         <button
           onClick={onBookHandler}
           className="bg-primary text-white mt-6 py-2 px-10 rounded hover:bg-primary/90 transition-all cursor-pointer"
