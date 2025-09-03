@@ -383,7 +383,7 @@ export const dummyDashboardData = {
 export const dummyBookingData = [
   {
     _id: "68396334fb83252d82e17295",
-    user: { name: "GreatStack" },
+    user: { name: "Mohammad Asad" },
     show: {
       _id: "68352363e96d99513e4221a4",
       movie: dummyShowsData[0],
@@ -396,10 +396,10 @@ export const dummyBookingData = [
   },
   {
     _id: "68396334fb83252d82e17295",
-    user: { name: "GreatStack" },
+    user: { name: "Asad" },
     show: {
       _id: "68352363e96d99513e4221a4",
-      movie: dummyShowsData[0],
+      movie: dummyShowsData[1],
       showDateTime: "2025-06-30T02:30:00.000Z",
       showPrice: 59,
     },
@@ -409,10 +409,10 @@ export const dummyBookingData = [
   },
   {
     _id: "68396334fb83252d82e17295",
-    user: { name: "GreatStack" },
+    user: { name: "Asad" },
     show: {
       _id: "68352363e96d99513e4221a4",
-      movie: dummyShowsData[0],
+      movie: dummyShowsData[2],
       showDateTime: "2025-06-30T02:30:00.000Z",
       showPrice: 59,
     },
