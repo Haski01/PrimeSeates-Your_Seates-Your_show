@@ -10,18 +10,19 @@ import { inngest, functions } from "./inngest/index.js"
 
 const app = express();
 const PORT = process.env.PORT || 5002; // Default to 5002 if PORT is not set in .env
-app.use(clerkMiddleware());
 
 await connetDB(); // connection with mongodb-Atlas
 
 // Middleware
 app.use(express.json());
 app.use(cors());
+app.use(clerkMiddleware());
 
 // API routes
 app.get("/", (req, res) => {
   res.send("Hello World!");
 });
+
 // Set up the "/api/inngest" (recommended) routes with the serve handler (inngest http end-Point)
 app.use("/api/inngest", serve({ client: inngest, functions }));
 
