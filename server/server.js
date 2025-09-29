@@ -1,26 +1,34 @@
 import express from "express";
 import cors from "cors";
-import "dotenv/config"; // This imports environment variables from .env file
+import "dotenv/config"; // Loads environment variables from .env
 import connetDB from "./configs/db.js";
 import { clerkMiddleware } from "@clerk/express";
+import bodyParser from "body-parser";
 
-// inngest
+// Inngest
 import { serve } from "inngest/express";
-import { inngest, functions } from "./inngest/index.js"
+import { inngest, functions } from "./inngest/index.js";
 
+// Svix is used to verify Clerk webhook signatures
+import { Webhook } from "svix";
+
+// Initialize App
 const app = express();
-const PORT = process.env.PORT || 5002; // Default to 5002 if PORT is not set in .env
+const PORT = process.env.PORT || 5002; // fallback port
 
-await connetDB(); // connection with mongodb-Atlas
+// Connect MongoDB Atlas
+await connetDB(); // ensures DB is connected before starting
 
 // Middleware
 app.use(express.json());
 app.use(cors());
+
+// Clerk middleware -> for authentication on your routes
 app.use(clerkMiddleware());
 
 // API routes
 app.get("/", (req, res) => {
-  res.send("Hello World!");
+  res.send("Hello World! 🚀 Server is running.");
 });
 
 // Set up the "/api/inngest" (recommended) routes with the serve handler (inngest http end-Point)
