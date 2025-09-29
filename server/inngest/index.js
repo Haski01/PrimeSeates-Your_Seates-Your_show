@@ -15,8 +15,6 @@ const syncUserCreation = inngest.createFunction(
     const { id, first_name, last_name, email_addresses, image_url } =
       event.data;
 
-    console.log(id, first_name, last_name);
-
     // create user
     const userData = {
       _id: id,
@@ -39,7 +37,6 @@ const syncUserDeletion = inngest.createFunction(
 
   async ({ event }) => {
     const { id } = event.data;
-    console.log(id);
 
     await User.findByIdAndDelete(id);
   }
