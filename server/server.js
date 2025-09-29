@@ -3,14 +3,14 @@ import cors from "cors";
 import "dotenv/config"; // Loads environment variables from .env
 import connetDB from "./configs/db.js";
 import { clerkMiddleware } from "@clerk/express";
-import bodyParser from "body-parser";
+// import bodyParser from "body-parser";
 
 // Inngest
 import { serve } from "inngest/express";
 import { inngest, functions } from "./inngest/index.js";
 
 // Svix is used to verify Clerk webhook signatures
-import { Webhook } from "svix";
+// import { Webhook } from "svix";
 
 // Initialize App
 const app = express();
